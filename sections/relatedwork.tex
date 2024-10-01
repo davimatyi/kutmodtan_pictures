@@ -1,1 +1,21 @@
 \section{Related Work}
+\label{sec:relatedwork}
+
+Several papers focus on the topic of room layout estimation, with multiple
+different approaches to the problem. Most existing methods tackle this problem
+with strict assumptions, such as modeling the room by a parametric box (cuboid)
+or assuming the room has a single-foor single-ceiling construction.
+
+\paragraph{}
+
+\textbf{Layout Estimation Using Geometric Hints} Room Layout Estimation Using
+Geometric Hints\cite{8451365} aims to predict surface layout from a single image
+by utilizing a deep network that combines textures and geometric hints. 
+Ruifeng et al. \cite{8451365} have presented the use of a multi-scale CNN
+approach which incorporates a multi-channel FCN. It works by assigning a surface
+label of the five possible surfaces to every pixel of the input image, and then
+utilizing a heatmap generated using these labels to determine which part of the
+image is predicted to belong to which surface. Under the Manhattan world 
+assumption\cite{790349} only these five surfaces \{Left, Front, Right, Ceiling,
+Ground\} can be visible in an image at the same time.
+
