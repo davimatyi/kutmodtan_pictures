@@ -40,3 +40,17 @@ author = {Hui Yao and Jun Miao and Yilin Zheng and Guoxiang Zhang and Jun Chu},
 keywords = {Indoor layout estimation, CNN, Undirected graph, Cuboid room, Non-cuboid room},
 abstract = {Room layout estimation aims to predict the spatial structure of a room from a single image. Most existing methods relying on 2D cues are suitable for cuboid rooms, but non-cuboid rooms. 3D layout estimation methods can reconstruct 3D models of general rooms, but they are trained with depth information on high collection costs, consume large computation resources, and run slowly. This paper considers an undirected graph representation method of the general room layouts, which includes cuboid and non-cuboid rooms consisting of a single ceiling, a single floor, and multiple walls. To this end, we first predict the positions of the layout vertices and then use the network automatically learn the connection relationship between the vertices. The final layout is obtained through a simple layout inference post-processing algorithm. The experimental results both on cuboid and non-cuboid datasets validate the effectiveness and efficiency of our method. The code is available at https://github.com/Hui-Yao/2D-graph-layout-estimation.}
 }
+
+@article{9707088,
+  author={Yang, Cheng and Zheng, Jia and Dai, Xili and Tang, Rui and Ma, Yi and Yuan, Xiaojun},
+  booktitle={2022 IEEE/CVF Winter Conference on Applications of Computer Vision (WACV)}, 
+  title={Learning to Reconstruct 3D Non-Cuboid Room Layout from a Single RGB Image}, 
+  year={2022},
+  volume={},
+  number={},
+  pages={235-244},
+  abstract={Single-image room layout reconstruction aims to reconstruct the enclosed 3D structure of a room from a single image. Most previous work relies on the cuboid shape prior. This paper considers a more general indoor assumption, i.e., the room layout consists of a single ceiling, a single floor, and several vertical walls. To this end, we first employ Convolutional Neural Networks to detect planes and vertical lines between adjacent walls. Meanwhile, estimating the 3D parameters for each plane. Then, a simple yet effective geometric reasoning method is adopted to achieve room layout reconstruction. Furthermore, we optimize the 3D plane parameters to reconstruct a geometrically consistent room layout between planes and lines. The experimental results on public datasets validate the effectiveness and efficiency of our method.},
+  keywords={Computer vision;Three-dimensional displays;Shape;Layout;Benchmark testing;Cognition;Convolutional neural networks;3D Computer Vision Scene Understanding},
+  doi={10.1109/WACV51458.2022.00031},
+  ISSN={2642-9381},
+  month={Jan},}
