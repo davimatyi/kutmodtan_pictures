@@ -11,13 +11,17 @@ or assuming the room has a single-foor single-ceiling construction.
 \textbf{Layout Estimation Using Geometric Hints} Room Layout Estimation Using
 Geometric Hints\cite{8451365} aims to predict surface layout from a single image
 by utilizing a deep network that combines textures and geometric hints. 
-Ruifeng et al. \cite{8451365} have presented the use of a multi-scale CNN
-approach which incorporates a multi-channel FCN. It works by assigning a surface
-label of the five possible surfaces to every pixel of the input image, and then
-utilizing a heatmap generated using these labels to determine which part of the
-image is predicted to belong to which surface. Under the Manhattan world 
-assumption\cite{790349} only these five surfaces \{Left, Front, Right, Ceiling,
-Ground\} can be visible in an image at the same time.
+Ruifeng et al. \cite{8451365} have presented the use of a multi-scale 
+Convolutional Neural Network (CNN) approach which incorporates a multi-channel
+Fully Convolutional Network (FCN).
+Their method works by assigning a surface label of the five possible surfaces to
+every pixel of the input image, and then utilizing a depth- and a normalmap
+generated using these labels to determine which part of the image is predicted to
+belong to which surface. Under the Manhattan world assumption\cite{790349} only
+these five surfaces \{Left, Front, Right, Ceiling, Ground\} can be visible in an
+image at the same time. After extracting the depthmap and the normalmap with the
+method described above, they used these as additional channels alongside the RGB
+pixel values of the image as the input of their multi-channel FCN.
 
 \paragraph{}
 
@@ -28,3 +32,8 @@ paper details a process that focuses on the use of undirected graphs. It paramet
 \paragraph{}
 
 \textbf{Learning to Reconstruct 3D Non-Cuboid Room Layout from a Single RGB Image} Learning to Reconstruct 3D Non-Cuboid Room Layout from a Single RGB Image\cite{9707088} presents a novel approach to reconstructing the 3D layout of indoor scenes, including walls, ceiling, and floor, from a single RGB image, addressing limitations of previous cuboid-based methods that lack flexibility in real-world scenarios. By framing room layout estimation as a plane detection problem, the proposed framework integrates the geometric relationships between detected 3D planes and 2D vertical lines of adjacent walls. This allows the method to discern whether walls are physically connected or disconnected in 3D space, utilizing Convolutional Neural Networks (CNNs) to detect both planes and vertical lines while estimating the 3D parameters for each plane.
+
+\paragraph{}
+
+\textbf{Polygon Detection for Room Layout Estimation using Heterogeneous Graphs and Wireframes}
+This paper presents an advanced method for creating 2-dimensional room layouts from photos by leveraging cutting-edge neural network techniques and geometric reasoning. It introduces a Heterogeneous Graph Transformer (HGT) model that excels in detecting planes, lines, and junctions in images, representing these projections as polygons to generate accurate room layouts. By avoiding traditional constraints like cuboid room shapes, the method can handle more complex environments. Additionally, the model directly estimates room layouts without the need for post-processing heuristics, achieving superior performance in key metrics compared to state-of-the-art methods. Its ability to accurately project 3D planes into 2D, along with thorough evaluations using synthetic and real wireframe detections, makes this approach highly effective for producing detailed, accurate 2D floor maps from simple images.
