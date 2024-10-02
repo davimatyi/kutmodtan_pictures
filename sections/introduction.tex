@@ -1,7 +1,7 @@
 \section{Introduction}
 
 \subsection{The general reconstruction of room layouts} %Problem statement
-A reconstruction of a room is the process of taking in some data from a room and transforming it into it's 2D floor plan. The floor plan contains basic information, such as the overall shape of the room as well as the location of windows and doors. The spatial dimensions can also be noted down, including the length of a wall or the height of the room. This floor plan is useful in many applications and services, such as virtual room design or simple information gathering in a faster, more convenient way. 
+A reconstruction of a room is the process of taking in some data from a room and transforming it into its 2D floor plan. The floor plan contains basic information, such as the overall shape of the room as well as the location of windows and doors. The spatial dimensions can also be noted down, including the length of a wall or the height of the room. This floor plan is useful in many applications and services, such as virtual room design or simple information gathering in a faster, more convenient way. 
 
 The efficient and precise reconstruction of a room has been attempted numerous
 times. The data in most cases is comprised of one or more pictures taken of the room. The process of transformation is the present problem, for which this paper attempts to provide a general solution to. The problems lie in the shape of a given room and how variable any room really is. Given that this problem is solved and the process is complete for any room, many new applications can emerge that utilize this process and make way for new services.
@@ -32,7 +32,7 @@ This is a difficult problem for the following reasons. A room can take on differ
 
 
 \subsection{The Basis of SKBDS} %Solution
-There exists various attempts at resolving the problem of room reconstruction. Most papers in this field are concerned with the reconstruction of cuboid shaped rooms with information given from a single image. As a consequence, these results provide a limited precision on depth and scaling. The most promising papers are given more attention in Related Work[\ref{sec:relatedwork}]
+There are various attempts at resolving the problem of room reconstruction. Most papers in this field are concerned with the reconstruction of cuboid shaped rooms with information given from a single image. As a consequence, these results provide a limited precision on depth and scaling. The most promising papers are given more attention in Related Work[\ref{sec:relatedwork}]
 
 Our presented solution, named Segment Knotting Boundless Detection System (abbreviated to SKBDS) aims to provide a more versatile method for reconstructing a room. With this paper, the aim was to develop a processing method that can reconstruct a non-cuboid shaped room from a small number of images. The solution can also determine the depth and scale properties of a room, since multiple viewponts are being used. It also puts more emphasis on detecting segments outlined by feature points and local descriptors. 
 
@@ -42,7 +42,7 @@ Our presented solution, named Segment Knotting Boundless Detection System (abbre
 This solution differs from the currently published ones in terms of usage and in terms of the reconstructing process. A heavy focus was put on image segmentation. A segment refer to a part of the image that can be detected and separated. Detecting the connection between segments involves identifying how these segments relate to one another. This could mean determining if they belong to the same structure, if they interact in some way, or if they share common features. SKBDS relies on detecting segments in the taken images and then matching them. Using this approach we relied less on the proximity of these segments which in turn resulted in identifying connections that may not be immediately obvious.
 
 %Roadmap
-This article will discuss related works in this field, explains the methodology and development process of SKBDS, then presents findings about the accuracy of the developed method. It will also draw a conclusion based on the results of the development and talk about potential directions for this method in the future 
+This article will discuss related works in this field, explains the methodology and development process of SKBDS, then presents findings about the accuracy of the developed method. It will also draw a conclusion based on the results of the development and talk about potential directions for this method in the future.
 
 
 
