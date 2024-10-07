@@ -6,7 +6,7 @@
 \documentclass{article}      % Specifies the document class
 
                              % The preamble begins here.
-\title{SKBD: Segment Knotting Boundless Detection For Room Layout Detection}
+\title{SKBD: Segment Knotting Boundary Detection For Room Layout Detection}
 \author{Barna Mikler, Botond Geonczeol, Dominik Li, \\ Matyas David, Balint Boros}
 \date{September 25, 2024}
 
@@ -14,14 +14,14 @@
                              % Defines \ip{arg1}{arg2} to mean
                              % (arg1, arg2).
 
-%\newcommand{\ip}[2]{\langle #1 | #2\rangle}
-                             % This is an alternative definition of
-                             % \ip that is commented out.
 
-\usepackage[backend=biber, style=numeric]{biblatex}
+\usepackage[backend=biber, style=numeric]{biblatex} % For references
 \addbibresource{references.bib}
-\usepackage{graphicx}    % For including images
-\usepackage{subcaption}  % For subfigures
+\usepackage{hyperref}
+\usepackage{graphicx}                               % For including images
+\usepackage{subcaption}                             % For subfigures
+% Set the page and margin size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
 \begin{document}             % End of preamble and beginning of text.
 
 \maketitle                   % Produces the title.
@@ -40,7 +40,6 @@
 
 \input{sections/futurework}
 
-% references
-\printbibliography
+\printbibliography           % Produces references
 
 \end{document}               % End of document.
