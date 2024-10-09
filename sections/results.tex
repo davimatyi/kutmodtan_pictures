@@ -1,1 +1,9 @@
 \section{Results}
+
+We have proven the validity and efficiency of SKBD, by evaluating it on two widely used datasets: LSUN dataset\cite{zhang2015large} and Structured3D dataset\cite{zheng2020structured3d}.
+
+\subsection{Results on LSUN dataset}
+For this test we have trained our SKBD descriptors using the relabeled LSUN dataset released by \cite{ren2017coarse}. The dataset consists of 4000 training images, 394 validation images and 1000 testing images. We have manually grouped the images taken of the same room from multiple angles, and resized all images to \( 640 \times 480 \) resolution using bicubic interpolation. We have used a standard metric for evaluation: corner error. It is computed by calculating the Euclidean distance between predicted corners and corresponding true corners.
+
+
+\subsection{Results on Structured3D dataset}
