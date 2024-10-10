@@ -10,12 +10,33 @@ A purely algorithmic approach was also tried. There were some promising results 
 
 
 \subsection{Detection of distinct segments} %Segment detection
-For segment detection, we revisited local descriptors. Using these we were able to detect spots in the image that can be described by some feature. For example color or shape of a given object can be detailed using these descriptors. Using different types of local descriptors, the algorithm looks for the following features in an image: Color, shape, texture, orientation and boundaries of a segment. Some regions will only be detected once by one specific descriptor. But since we use multiple type of descriptors, more than one descriptor can find the same segment. This would be a problem, however the algorithm uses this to its advantage. It uses the redundant information to determine the easily detecteable segments. For the sake of simplicity, in this paper a descriptor detailing a segment is called a representation.
+For segment detection, we revisited local descriptors. Using these descriptors we were able to detect spots in the image that can be described by some feature. These spots are called segments. For example color or shape of a given object can be detailed using these descriptors. Using different types of local descriptors, the algorithm looks for the following features in an image: color, shape, texture, orientation and boundaries of a segment. Some regions will only be detected once by one specific descriptor. However since we use multiple type of descriptors, more than one descriptor can find the same segment. This would be a problem, however the algorithm uses this to its advantage. It uses the redundant information to determine the easily detectable segments. For the sake of simplicity, in this paper a descriptor detailing a segment is called a representation.
 
-After every possible detail is extracted from an image, we run these representations through a filter that is able to separate the segments into a distinct set. An element of the set consists of a segment and its associated representations. The process of organizing the representations into this set happens by measuring the similarity of two representations against a threshold. If that threshold is reached, the similarity is deemed to be too great and therefore only one of the representation of the segment can remain as the main representation (it is proposed that a high chance of similarity means that the two representations detail the same segment). The unused segment representations are also saved in the set, but only one main representation can be the appointed segment of the set.  
+After every possible detail is extracted from an image, we run these representations through a filter that is able to separate the segments into a distinct set. An element of the set consists of a segment and its associated representations. The process of organizing the representations into this set happens by measuring the similarity of two representations against a threshold. If that threshold is reached, the similarity is deemed to be too great and therefore only one of the representation of the segment can remain as the main representation (it is proposed that a high chance of similarity means that the two representations detail the same segment). The unused segment representations are also saved in the set, but only one main representation can be the appointed segment of the set. The process of this filtering is detailed in Figure [\ref{alg:distinct}]
 
-This filtering process also assigns a number to each segment in the set. This number is a so called confidence level, that is able to measure how confident the algorithm is in that this segment is a real, easily distinguishable one. A segment's label is increased if a similar segment was found with a different descriptor. In this case, the algorithm assumes that now more than one descriptor found the same segment and therefore it is more likely that this segment is a real one. 
+%algorithm to detail this set creation
+\begin{algorithm}
+\caption{Building of the Set}\label{alg:distinct}
+\begin{algorithmic}
+    \State \texttt{Declare set S}
+    \State \texttt{Given representations in R}
+    \For{ \texttt{representation r in R}}
+        \State \texttt{Declare flag F for similarity}
+        \For{\texttt{segment s in S}}
+            \If{\texttt{r and s similarity > threshold}}
+                \State \texttt{Add r as a representation to r}
+                \State \texttt{Set F}
+            \EndIf
+        \EndFor
+        \If{F not set}
+            \State \texttt{Add r as a segment to s}
+        \EndIf
+    \EndFor
+\end{algorithmic}
+\end{algorithm}
 
+
+This filtering process also assigns a number to each segment in the set. This number is a so called confidence level, that is able to measure how confident the algorithm is in that this segment is a real, easily distinguishable one. A segment's confidence level is increased if a similar segment was found with a different descriptor. In this case, the algorithm assumes that now more than one descriptor found the same segment and therefore it is more likely that this segment is a real one. 
 
 At the end of this process, we are left with a set of distinct segments, represented by different type of descriptors. Because of the heavy use of different type of feature detection and description, we maximize the number of detectable segments in an image set. The next stage of the process is the association of these segments.
 
