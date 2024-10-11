@@ -42,35 +42,46 @@ At the end of this process, we are left with a set of distinct segments, represe
 
 \subsection{Association of the segments} %Segment Association
 
-The first task in the association of segments is determining the interesting and important key points. During the detection phase, some information is already saved about the individual segments, which decriptor found it, how high its activation level was and additional information based on the type of descriptor. While merging them into representations, these characterestics are inherited. Representations also have their confidence score. Based on all these factors, an interest score is calculated for each representation. Then the most important representations will be selected as the first key points.
+The first task in the association of segments is determining the interesting and important key points. During the detection phase, some information is already saved about the individual representations, which decriptor found it, how high its activation level was and additional information based on the type of descriptor. While merging them into segments, these characterestics are inherited. Segments also have their confidence score. Based on all these factors, an interest score is calculated for each segment. Then the most important segments will be selected as the first key points.
 
-In the following step, each key point gathers the similar representations around themselves. These groups are also called knots in this paper. An association likeliness score is calculated between each key point and each representation. This includes the similarity of characterestics of the two representation and their disctance. The factors that contributed heavily to the interest score of the key points are weighted more heavily here. Every representation with an association score above a certain threshold is associated with the given key point, it is placed inside its knot. Each representation can be part of multiple knots independently and there is no upper bound for the possible number of association. Therefore, this part of the process can be heavily parallelized to improve the algorithms performance.
+In the following step, each key point gathers the similar segments around themselves. These groups are also called knots in this paper. An association likeliness score is calculated between each key point and each segment. This includes the similarity of characterestics of the two segments and their disctance. The factors that contributed heavily to the interest score of the key points are weighted more heavily here. Every segment with an association score above a certain threshold is associated with the given key point, it is placed inside its knot. Each segment can be part of multiple knots independently and there is no upper bound for the possible number of association. Therefore, this part of the process can be heavily parallelized to improve the algorithms performance.
 
-These two steps are repreated iteratively. In the following iterations, the number of associations and their strenght are also calculated into the intrest score of the representations. This ensures that the different representations with different characterestics are selected in each iteration. The desired number of key points and the association threshold are both increased between iterations. While this approach ensures that more and smaller group of representations are gathered around the key points in each iteration, there is no direct hiearchy between them, since the new key points gather representations independently from their previous groups. The iteration of the association ends when a certain number of key points are selected.
+These two steps are repreated iteratively. In the following iterations, the number of associations and their strenght are also calculated into the intrest score of the segments. This ensures that the different segments with different characterestics are selected in each iteration. The desired number of key points and the association threshold are both increased between iterations. While this approach ensures that more and smaller group of segments are gathered around the key points in each iteration, there is no direct hiearchy between them, since the new key points gather segments independently from their previous groups. The iteration of the association ends when a certain number of key points are selected.
 
 This algorithm is summarized in Algorithm~\ref{alg:assoc}.
 
 \begin{algorithm}
-\caption{Segment Association}\label{alg:assoc}
+\caption{Building of the Knots}\label{alg:assoc}
 \begin{algorithmic}
-\While{\texttt{not enough key points are selected}}
-    \For{\texttt{each representation}}
-        \State \texttt{calculate intrest score}
+\State \texttt{Declare set K}
+\State \texttt{Given segments in S}
+\State \texttt{Given desired number of key points as D}
+\State \texttt{Given starting association threshold as T}
+\State \texttt{Given starting desired number of key points as R}
+\While{\texttt{Lenght of K < D}}
+    \State \texttt{Declare set P}
+    \For{\texttt{segment s in S}}
+        \State \texttt{calculate intrest score of s}
     \EndFor
-    \State \texttt{select desired number of representation with the highest intrest score as key points}
-    \For{\texttt{each key point}}
-        \For{\texttt{each representation}}
-            \State \texttt{calculate association score}
-            \If{\texttt{association score > association threshold}}
-                \State {\texttt{associate the key point and the representation}}
+    \State \texttt{select R segments from S with the highest instrest score into P}
+    \For{\texttt{key point k in P}}
+        \For{\texttt{segment s in S}}
+            \State \texttt{calculate association score a}
+            \If{\texttt{a > T}}
+                \State {\texttt{associate k and s}}
             \EndIf
         \EndFor
+        \State \texttt{add k to K}
     \EndFor
-    \State \texttt{increase association threshold}
-    \State \texttt{increase desired number of key points}
+    \State \texttt{increase T}
+    \State \texttt{increase R}
 \EndWhile
 \end{algorithmic}
 \end{algorithm}
+
+The next importan step is creating a common depiction for each knot. These depictions are also called super segments. To create a super segment, the statistical data for the segments in the knot is calculated. This includes the number of segments and representations in the knot and individual statistics for each characteristic of the segments. For each value the mean, the median, the mode, the quartiles and the deviation are calculated.
+
+Based on these statistics the connection strenght score matrix, abbreviated to CSSM, is calculated. The matrix represents the connection strength of every super segment with every other super segment. To get the values for one of the super segments, first the difference between its statistics and every other super segment's is calulated, separately for each characteristic. The differences are ranked and based on the closest value each following one's score is increased. The strenght scores are normalized, so for each the closest super segment's score will be one.
 
 \subsection{The process of reconstruction} % Process of recontruction
 
