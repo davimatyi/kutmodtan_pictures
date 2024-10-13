@@ -2,6 +2,8 @@
 
 To explore all the new possibilities that the SKBD opens and to attempt to further improve its results, the following points still require future work:
 \begin{itemize}
-  \item Explore using different, more or better desriptors.
   \item Developing an algorithm with similar principles focusing on cuboid rooms.
+  \item Explore the use of different desriptors: Using other descriptors e.g. DALSM can result in a more efficent way with better benchmark results to give an accurate measurement of a pair of images.
+  \item {Handling Non-Manhattan World Assumptions:} While SKBD works well under the Manhattan World Assumption, many real-world environments do not adhere to this constraint. Developing a different the algorithm with similar principles might handle non-cuboid rooms without relying on specific assumptions about walls and corners would allow for broader application in real-world scenarios.
+  \item Incorporating Multi-view Information: SKBD's ability to combine multiple images of a room from different angles already demonstrates clear benefits. Future work could expand this by integrating multi-view stereo or Structure-from-Motion (SfM) techniques to generate more accurate and detailed 3D room layouts from minimal images
 \end{itemize}
