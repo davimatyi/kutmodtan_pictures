@@ -33,9 +33,26 @@ This is a difficult problem for the following reasons. A room can take on differ
 \subsection{Image descriptors}
 This paper utilizes image descriptors. These are numerical representations of a feature on an image region. The region can be the whole image, when this is the case the descriptor is called a global descriptor. When an image region is a subset of the image, it is called a segment of the image. When a descriptor only retrieves information from a segment, it is called a local descriptor.
 
-Descriptors can also be broken down into multiple types based on the feature they focus on. We mainly used the general information descriptors that describe one basic characteristics of an image. A characteristic can be for example color, shape or texture. During our solution we frequently relied on local descriptors that extract a single characteristic from a segment. These descriptors are also used to identify segments in a given image, like the SIFT \cite{lowe2004distinctive} and SURF \cite{speeduprobustfeatures}. More information about descriptors can be found in the book Introduction to MPEG 7: Multimedia Content Description Language\cite{manjunath2002mpeg7}.
+Descriptors can also be broken down into multiple types based on the feature they focus on. We mainly used the general information descriptors that describe one basic characteristics of an image. A characteristic can be for example color, shape or texture. During our solution we frequently relied on local descriptors that extract a single characteristic from a segment. These descriptors are also used to identify segments in a given image, like the SIFT \cite{lowe2004distinctive} and SURF \cite{speeduprobustfeatures}. The output of these two descriptors can be viewed at Figure \ref{fig:descriptoroutputs} . More information about descriptors can be found in the book Introduction to MPEG 7: Multimedia Content Description Language\cite{manjunath2002mpeg7}.
 
-
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}[b]{0.38\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/siftdescresult.png}
+        \caption{Output of a SIFT descriptor}
+        \label{fig:siftres}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.38\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/surfdescresult.png}
+        \caption{Output of a SURF descriptor}
+        \label{fig:surfres}
+    \end{subfigure}
+    \caption{Example of descriptors}
+    \label{fig:descriptoroutputs}
+\end{figure}
 
 
 \subsection{The Basis of SKBD} %Solution
