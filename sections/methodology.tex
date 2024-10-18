@@ -10,10 +10,30 @@ A purely algorithmic approach was also tried. There were some promising results 
 
 
 \subsection{Detection of distinct segments} %Segment detection
-For segment detection, we revisited local descriptors. Using these descriptors we were able to detect spots in the image that can be described by some feature. These spots are called segments. For example color or shape of a given object can be detailed using these descriptors. Using different types of local descriptors, the algorithm looks for the following features in an image: color, shape, texture, orientation and boundaries of a segment. Some regions will only be detected once by one specific descriptor. However since we use multiple type of descriptors, more than one descriptor can find the same segment. This would be a problem, however the algorithm uses this to its advantage. It uses the redundant information to determine the easily detectable segments. For the sake of simplicity, in this paper a descriptor detailing a segment is called a representation.
+For segment detection, we revisited local descriptors. Using these descriptors we were able to detect spots in the image that can be described by some feature. These spots are called segments. For example color or shape of a given object can be detailed using these descriptors. Using different types of local descriptors, the algorithm looks for the following features in an image: color, shape, texture, orientation and boundaries of a segment. Some different extractable characteristics are presented in Figure \ref{fig:desc_data}
+
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}[b]{0.38\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/objdet.png}
+        \caption{Detecting objects using descriptors}
+        \label{fig:desc_objdet}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.38\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/edgedet.png}
+        \caption{Identifying edges using descriptors}
+        \label{fig:desc_edge}
+    \end{subfigure}
+    \caption{Data processing using descriptors}
+    \label{fig:desc_data}
+\end{figure}
+
+Some regions will only be detected once by one specific descriptor. However since we use multiple type of descriptors, more than one descriptor can find the same segment. This would be a problem, however the algorithm uses this to its advantage. It uses the redundant information to determine the easily detectable segments. For the sake of simplicity, in this paper a descriptor detailing a segment is called a representation.
 
 After every possible detail is extracted from an image, we run these representations of segments through a filter that is able to separate the segments into a distinct set. An element of the set consists of a segment and its associated representations. The process of organizing the representations into this set happens by measuring the similarity of two representations against a threshold. If that threshold is reached, the similarity is deemed to be too great and therefore only one of the representation of the segment can remain as the main representation (it is proposed that a high chance of similarity means that the two representations detail the same segment). The unused segment representations are also saved in the set, but only one main representation can be the appointed segment of the set. The process of this filtering is detailed in Algorithm \ref{alg:distinct}, which gives a rough outline of the control and data flow of the algorithm
-
 %algorithm to detail this set creation
 \begin{algorithm}
 \caption{Building of the Set}\label{alg:distinct}
@@ -115,8 +135,23 @@ The proximity values are selected from a range. This range is defined by taking 
 \end{algorithm}
 
 
+\newpage
+As a result of selecting distinct proximity values, we are left with graphs that have various combinations of edges defined. All graphs contain all depictions but the connections of depictioncs is different. The weight of the edges are the strength scores from CSSM. These graphs each define a layout and a relation between depictions, which in turn means it defines a structured layout between grouped segments. These layouts all function as guesses for the true layout, each guess having worked with different proximity value could have a different guess for the layout. Possible outputs resulting in this step can be seen in Figure \ref{fig:layoutguesses}
 
-As a result of selecting distinct proximity values, we are left with graphs that have various combinations of edges defined. All graphs contain all depictions but the connections of depictioncs is different. The weight of the edges are the strength scores from CSSM. These graphs each define a layout and a relation between depictions, which in turn means it defines a structured layout between grouped segments. These layouts all function as guesses for the true layout, each guess having worked with different proximity value could have a different guess for the layout.
+\begin{figure}[htbp]
+    \centering
+    \begin{subfigure}[b]{0.38\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/layoutguess1.png}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[b]{0.38\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{images/layoutguess2.png}
+    \end{subfigure}
+    \caption{2 possible layout guesses}
+    \label{fig:layoutguesses}
+\end{figure}
 
 These graphs are then ran through an algorithm that detects the most commonly guessed edges (and therefore connections). Edges between depictions that are rarely defined are not taken into account. By having different CSSMs for each graph we give a chance for underrepresented edges to also make into the final layout guess. This method of selection produces one final layout that contains the most likely edges.
 
