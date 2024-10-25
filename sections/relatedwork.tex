@@ -4,7 +4,7 @@
 Several papers focus on the topic of room layout estimation, with multiple
 different approaches to the problem. Most existing methods tackle this problem
 with strict assumptions, such as modeling the room by a parametric box (cuboid)
-or assuming the room has a single-foor single-ceiling construction.
+or assuming the room has a single-foor single-ceiling construction. Our method offers a solution to a wider problem than this, therefore these papers were proven to be useful as a basis to develop our solution.
 
 \paragraph{}
 
@@ -31,7 +31,7 @@ paper details a process that focuses on the use of undirected graphs. It paramet
 
 \paragraph{}
 
-\textbf{Learning to Reconstruct 3D Non-Cuboid Room Layout from a Single RGB Image} Learning to Reconstruct 3D Non-Cuboid Room Layout from a Single RGB Image\cite{9707088} presents a novel approach to reconstructing the 3D layout of indoor scenes, including walls, ceiling, and floor, from a single RGB image, addressing limitations of previous cuboid-based methods that lack flexibility in real-world scenarios. By framing room layout estimation as a plane detection problem, the proposed framework integrates the geometric relationships between detected 3D planes and 2D vertical lines of adjacent walls. This allows the method to discern whether walls are physically connected or disconnected in 3D space, utilizing Convolutional Neural Networks (CNNs) to detect both planes and vertical lines while estimating the 3D parameters for each plane.
+\textbf{Learning to Reconstruct 3D Non-Cuboid Room Layout from a Single RGB Image} Learning to Reconstruct 3D Non-Cuboid Room Layout from a Single RGB Image\cite{9707088} presents a novel approach to reconstructing the 3D layout of indoor scenes, including walls, ceiling, and floor, from a single RGB image, addressing limitations of previous cuboid-based methods that lack flexibility in real-world scenarios. By framing room layout estimation as a plane detection problem, the proposed framework integrates the geometric relationships between detected 3D planes and 2D vertical lines of adjacent walls. This allows the method to discern whether walls are physically connected or disconnected in 3D space, utilizing Convolutional Neural Networks (CNNs) to detect both planes and vertical lines while estimating the 3D parameters for each plane. The idea of plane detection was considered in our solution as well. We also detect planes although in a different manner, more with the usage of detected features on the images. 
 
 \paragraph{}
 

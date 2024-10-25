@@ -30,6 +30,27 @@ For most rooms, we can differentiate between cuboid and non-cuboid shaped instan
 
 This is a difficult problem for the following reasons. A room can take on different shapes, the room height can change and in some places the space can even narrow or widen. For this reason it has been proven to be a difficult challenge to efficiently map out a room's floor plan based on images. The difficulty is compounded when relying on one image to extract spatial information. Images provide limited depth perception when taken from a single viewpoint. This also makes the scaling of a processed room difficult to evaluate.
 
+\subsection{General assumptions about space reconstruction}
+When dealing with the reconstruction of spaces, there are several assumptions that are taken into account. Some assumptions may not be true for every scenario, still they remain important guiding factors in our proposed solution.
+\paragraph{}
+
+\textbf{Manhattan World Assumption} Assumes that the physical world can be represented as a series of surfaces aligned with three mutually orthogonal axes. By assuming that surfaces align with these three axes, algorithms for reconstructing 3D rooms can more easily interpret depth and geometry from 2D images, which can make reconstruction easier.
+
+\paragraph{}
+
+\textbf{Planar World Assumption} Assumes that the scene consists largely of planar surfaces. This assumption simplifies the reconstruction of environments by breaking down complex geometries into simpler, flat surfaces. The breaking down process remained useful as this can easily be assumed for rooms. 
+
+\paragraph{}
+
+\textbf{Lambertian Assumption} Assumes that surfaces reflect light uniformly in all directions, meaning that observed brightness is directly proportional to the surface orientation relative to the light source. This means that any changes in an image's luminosity is not caused by a change of light intensity, but a change in surface, texture or distance from the light source..
+\paragraph{}
+
+\textbf{Texture Consistency Assumption} Assumes that textures or colors on an object’s surface are consistent when viewed from different angles. The assumption is especially useful for detecting the same object from multiple viewpoints. It is also useful in detecting objects on a simple image, as it simplifies the detection of the object borders.
+
+\paragraph{}
+
+\textbf{Sparse Feature Assumption} Assumes that a reconstruction algorithm should focus on a limited number of distinct, easily identifiable points or features in the scene that can be consistently tracked across multiple images. These features are usually edges, corners or easily distingueshed areas in an image.
+
 \subsection{Image descriptors}
 This paper utilizes image descriptors. These are numerical representations of a feature on an image region. The region can be the whole image, when this is the case the descriptor is called a global descriptor. When an image region is a subset of the image, it is called a segment of the image. When a descriptor only retrieves information from a segment, it is called a local descriptor.
 
