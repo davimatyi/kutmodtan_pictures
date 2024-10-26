@@ -62,7 +62,7 @@ This filtering process also assigns a number to each segment in the set. This nu
 
 At the end of this process, we are left with a set of distinct segments, represented by different type of descriptors. Because of the heavy use of different types of feature detection and description, we maximize the number of detectable segments in an image set. The next stage of the process is the association of these segments.
 
-\subsection{Association of the segments} %Segment Association
+\subsection{Association of Segments} %Segment Association
 \label{subsec:assoc_segm}
 
 The first task in the association of segments is determining the interesting and important key points. During the detection phase, some information is already saved about the individual representations, which decriptor found it, how high its activation level was and additional information based on the type of descriptor. While merging them into segments, these characterestics are inherited. Segments also have their confidence score. Based on all these factors, an interest score is calculated for each segment. Then the most important segments will be selected as the first key points.
@@ -101,6 +101,9 @@ This algorithm is summarized in Algorithm~\ref{alg:assoc}.
 \EndWhile
 \end{algorithmic}
 \end{algorithm}
+
+\subsection{Association of Knots} %Segment Association
+\label{subsec:assoc_knots}
 
 The next important step is creating a common depiction for each knot. These depictions are also called super segments. To create a super segment, the statistical data for the segments in the knot is calculated. This includes the number of segments and representations in the knot and individual statistics for each characteristic of the segments. For each value the mean, the median, the mode, the quartiles and the deviation are calculated.
 
