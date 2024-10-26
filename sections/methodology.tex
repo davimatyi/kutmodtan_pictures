@@ -111,7 +111,7 @@ Based on these statistics the connection strength score matrix, abbreviated to C
 
 \subsection{Defining a layout guess} % Process of recontruction
 
-Taking the aforementioned depictions in the CSSM we attempt to create multiple graph structures that are separate from each other. For a given graph we take the nodes as the depictions. The edges for a given graph differ from graph to graph. These edges are weighted and  determined by a proximity value. If 2 given depictions' strength scores (calculated by the CSSM) are above the proximity value, an edge is formed between the associated nodes. Different graphs work with different proximity values and the strength scores differ from as well. For each graph a proximity value is selected and strength scores are calculated from a CSSM detailed in \ref{subsec:assoc_segm}. This CSSM takes into account different characteristics for each graph. More concretely, every time a different subsection of characteristics are used to define a CSSM. 
+Taking the aforementioned depictions in the CSSM we attempt to create multiple graph structures that are separate from each other. For a given graph we take the nodes as the depictions. The edges for a given graph differ from graph to graph. These edges are weighted and  determined by a proximity value. If two given depictions' strength scores (calculated by the CSSM) are above the proximity value, an edge is formed between the associated nodes. Different graphs work with different proximity values and the strength scores differ from as well. For each graph a proximity value is selected and strength scores are calculated from a CSSM detailed in \ref{subsec:assoc_segm}. This CSSM takes into account different characteristics for each graph. More concretely, every time a different subsection of characteristics are used to define a CSSM. 
 
 The proximity values are selected from a range. This range is defined by taking the CSSM strength scores and setting the range's limits to the first and third quartiles of the strength scores. Proximity values are then picked from this range to be used for the creation of different graphs. The process of defining graphs is detailed in Algorithm \ref{alg:graph}
 
@@ -152,7 +152,7 @@ As a result of selecting distinct proximity values, we are left with graphs that
         \centering
         \includegraphics[width=\textwidth]{images/layoutguess2.png}
     \end{subfigure}
-    \caption{2 possible layout guesses}
+    \caption{Two possible layout guesses}
     \label{fig:layoutguesses}
 \end{figure}
 
@@ -161,7 +161,7 @@ These graphs are then ran through an algorithm that detects the most commonly gu
 
 \subsection{Reconstructing a floor map}
 
-Based on the final layout guess, a floor map can be reconstructed. To achieve this we take the depictions and using the edge characteristics (note that this edge characteristic is given by a descriptor, this is not the graph's edge), we map out an outline of the room. Since the graph's nodes are connected in the appropriate form, we can use the location and edge characteristics to accurately map out a room's walls and corners. Using the locations of the depictions, we could estimate the dimensions of the room. The final representation of a room consists of definition of 2 dimensional points. The corners are represented by points in a cartesian coordinate system, for the sake of simplicity. Coordinates are represented in measures of centimeters. Since doors and windows also have distinct, detectable characteristics, these also get processed as depictions. Using the dimensional data provided by the graph these elements can also be properly placed in a fllor map. For the sake of uniformity, these are also represented as points with a special flag in their data, signaling that these points represent doors and windows.
+Based on the final layout guess, a floor map can be reconstructed. To achieve this we take the depictions and using the edge characteristics (note that this edge characteristic is given by a descriptor, this is not the graph's edge), we map out an outline of the room. Since the graph's nodes are connected in the appropriate form, we can use the location and edge characteristics to accurately map out a room's walls and corners. Using the locations of the depictions, we could estimate the dimensions of the room. The final representation of a room consists of definition of two-dimensional points. The corners are represented by points in a cartesian coordinate system, for the sake of simplicity. Coordinates are represented in measures of centimeters. Since doors and windows also have distinct, detectable characteristics, these also get processed as depictions. Using the dimensional data provided by the graph these elements can also be properly placed in a fllor map. For the sake of uniformity, these are also represented as points with a special flag in their data, signaling that these points represent doors and windows.
 
 
 
