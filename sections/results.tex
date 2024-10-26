@@ -1,19 +1,23 @@
 \section{Results}
 \label{sec:results}
-We are proving the validity and efficiency of SKBD by evaluating it on two widely used datasets: Structured3D dataset\cite{zheng2020structured3d} and LSUN dataset\cite{zhang2015large}. We are using two standard metrics for evaluation: Corner Error (CE) and Pixel Error (PE). Corner Error is computed by calculating the Euclidean distance between predicted corners and corresponding ground truth corners. Pixel Error is calculated by matching the predicted plane of the floor to the ground truth and calculating a difference as a percentage based on the total number of pixels. For the sake of understandability in \autoref{fig:comparisontest} and \autoref{fig:resultlayouts}, only walls and floors are shown as segments. As SKBD resolves to room layout, the final floor plan has to be calculated by applying a transformation to the polygon associated with the floor for the two methods we are choosing to compare against.
+We are proving the validity and efficiency of SKBD by evaluating it on two widely used datasets: Structured3D dataset\cite{zheng2020structured3d} and LSUN dataset\cite{zhang2015large}. We are using two standard metrics for evaluation: Corner Error (CE) and Pixel Error (PE). Corner Error is computed by calculating the Euclidean distance between predicted corners and corresponding ground truth corners. Pixel Error is calculated by matching the predicted plane of the floor to the ground truth and calculating a difference as a percentage based on the total number of pixels. For the sake of understandability in \autoref{fig:resultlayouts} and \autoref{fig:comparisontest}, only walls and floors are shown as segments. As SKBD resolves to room layout, the final floor plan has to be calculated by applying a transformation to the polygon associated with the floor for the two methods we are choosing to compare against.
 
 The highlighted algorithms\cite{8451365}\cite{10350607} focus on Room Layout Reconstruction from a single image. However, even in single viewpoint tests our method outperforms these state of the art algorithms. For comparison tests we are choosing two Convolutional Neural Network based approaches, referred to as MC-FCN\cite{8451365} and HGC\cite{10350607}. For MC-FCN, we implemented the model based on the DeepLab-ResNet101\cite{chen2017deeplab} architecture. Both competing models were trained on the training subset of each dataset, respectively.
+
+Some examples of the output of SKBD are shown in \autoref{fig:comparisontest}. These are based on a few example images taken from Structured3D dataset\cite{zheng2020structured3d} with various levels of clutter and complexity. The qualitative test results are detailed in \autoref{fig:comparisontest}. It shows successfully identified segments in row two, and a predicted floorplan overlayed on top of the true floorplan in row three.
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.9\linewidth]{images/results2.png}
-\caption{\label{fig:resultlayouts}Demonstration of the output of SKBD with a few example images taken from Structured3D dataset\cite{zheng2020structured3d} with various levels of clutter and complexity.}
+\caption{Demonstration of the output of SKBD}
+\label{fig:resultlayouts}
 \end{figure}
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.9\linewidth]{images/comparison_test_images.png}
-\caption{\label{fig:comparisontest}Qualitative test results on an example image taken from Structured3D dataset\cite{zheng2020structured3d} showing successfully identified segments in row two, and a predicted floorplan overlayed on top of the true floorplan in row three.}
+\caption{Qualitative test results on an example image}
+\label{fig:comparisontest}
 \end{figure}
 
 \subsection{Results on Structured3D dataset}
