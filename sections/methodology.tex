@@ -35,7 +35,7 @@ Some regions will only be detected once by one specific descriptor. However sinc
 
 After every possible detail is extracted from an image, we run these representations of segments through a filter that is able to separate the segments into a distinct set. An element of the set consists of a segment and its associated representations. The process of organizing the representations into this set happens by measuring the similarity of two representations against a threshold. If that threshold is reached, the similarity is deemed to be too great and therefore only one of the representation of the segment can remain as the main representation (it is proposed that a high chance of similarity means that the two representations detail the same segment). The unused segment representations are also saved in the set, but only one main representation can be the appointed segment of the set. The process of this filtering is detailed in Algorithm \ref{alg:distinct}, which gives a rough outline of the control and data flow of the algorithm.
 %algorithm to detail this set creation
-\begin{algorithm}
+\begin{algorithm}[H]
 \caption{Building of the Set}\label{alg:distinct}
 \begin{algorithmic}
     \State \texttt{Declare set S}
@@ -73,7 +73,7 @@ These two steps are repreated iteratively. In the following iterations, the numb
 
 This algorithm is summarized in Algorithm~\ref{alg:assoc}.
 
-\begin{algorithm}
+\begin{algorithm}[H]
 \caption{Building of the Knots}\label{alg:assoc}
 \begin{algorithmic}
 \State \texttt{Declare set K}
@@ -138,7 +138,7 @@ Taking the aforementioned depictions in the CSSM we attempt to create multiple g
 
 The proximity values are selected from a range. This range is defined by taking the CSSM strength scores and setting the range's limits to the first and third quartiles of the strength scores. Proximity values are then picked from this range to be used for the creation of different graphs. The process of defining graphs is detailed in Algorithm \ref{alg:graph}.
 
-\begin{algorithm}
+\begin{algorithm}[H]
 \caption{Defining the graphs}\label{alg:graph}
 \begin{algorithmic}
 \State \texttt{Given depictions in D}
@@ -160,8 +160,6 @@ The proximity values are selected from a range. This range is defined by taking 
 \end{algorithmic}
 \end{algorithm}
 
-
-\newpage
 As a result of selecting distinct proximity values, we are left with graphs that have various combinations of edges defined. All graphs contain all depictions but the connections of depictioncs is different. The weight of the edges are the strength scores from CSSM. These graphs each define a layout and a relation between depictions, which in turn means it defines a structured layout between grouped segments. These layouts all function as guesses for the true layout, each guess having worked with different proximity value could have a different guess for the layout. Possible outputs resulting in this step can be seen in Figure \ref{fig:layoutguesses}.
 
 \begin{figure}[htbp]
