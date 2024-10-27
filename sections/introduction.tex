@@ -77,7 +77,7 @@ Descriptors can also be broken down into multiple types based on the feature the
 
 
 \subsection{The Basis of SKBD} %Solution
-There are various attempts at resolving the problem of room reconstruction. Most papers in this field are concerned with the reconstruction of cuboid shaped rooms with information given from a single image. As a consequence, these results provide a limited precision on depth and scaling. The most promising papers are given more attention in Related Work[\ref{sec:relatedwork}]
+There are various attempts at resolving the problem of room reconstruction. Most papers in this field are concerned with the reconstruction of cuboid shaped rooms with information given from a single image. As a consequence, these results provide a limited precision on depth and scaling. The most promising papers are given more attention in Related Work[\ref{sec:relatedwork}].
 
 Our presented solution, named Segment Knotting Boundary Detection (abbreviated to SKBD) aims to provide a more versatile method for reconstructing a room. With this paper, the aim was to develop a processing method that can reconstruct a non-cuboid shaped room from a small number of images. The solution can also determine the depth and scale properties of a room, since multiple viewpoints are being used. It also puts more emphasis on detecting segments outlined by feature points and segments detected by local descriptors. 
 
@@ -85,5 +85,6 @@ Our presented solution, named Segment Knotting Boundary Detection (abbreviated t
 This solution differs from the currently published ones in terms of usage and in terms of the reconstructing process. A heavy focus was put on image segmentation. A segment refer to a part of the image that can be detected and separated. Detecting the connection between segments involves identifying how these segments relate to one another. This could mean determining if they belong to the same structure, if they interact in some way, or if they share common features. SKBD relies on detecting segments in the taken images and then matching them. Using this approach we relied less on the proximity of these segments which in turn resulted in identifying connections that may not be immediately obvious.
 
 %Roadmap
+\subsection{Structure of the paper}
 This article will discuss related works \ref{sec:relatedwork} in this field and how they relate to our work.  The Methodology Section \ref{sec:methodology} explains the methodology and development process of SKBD, what approaches were tried and what ultimately got implemented.
-    Findings are presented in the Results Section \ref{sec:results}, where our solution is also compared to other implementations. In the Discussion Section \ref{sec:discussion} the implemented approach is discussed and in the Conclusion Section \ref{sec:conclusion} the paper is summarized. Further potential directions opened by this paper are presented in the Future Work Section \ref{sec:futurework}
+    Findings are presented in the Results Section \ref{sec:results}, where our solution is also compared to other implementations. In the Discussion Section \ref{sec:discussion} the implemented approach is discussed and in the Conclusion Section \ref{sec:conclusion} the paper is summarized. Further potential directions opened by this paper are presented in the Future Work Section \ref{sec:futurework}.
