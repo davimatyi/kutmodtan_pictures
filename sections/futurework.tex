@@ -1,9 +1,10 @@
 \section{Future Work}
 \label{sec:futurework}
 The desired result was achieved as detailed in the Discussion \ref{sec:discussion}, however there are possible improvements that were outside of the scope for this solution.
-To explore all the new possibilities that the SKBD opens and to attempt to further improve its results, the following points still require future work:
-\begin{itemize}
-  \item Explore the use of different descriptors: Using other descriptors e.g. DALSM can result in a more efficent way with better benchmark results to give an accurate measurement of a pair of images.
-  \item {Handling Non-Manhattan World Assumptions:} While SKBD works well under the Manhattan World Assumption, many real-world environments do not adhere to this constraint. Developing a different the algorithm with similar principles might handle non-cuboid rooms without relying on specific assumptions about walls and corners would allow for broader application in real-world scenarios.
-  \item Incorporating Multi-view Information: SKBD's ability to combine multiple images of a room from different angles already demonstrates clear benefits. Future work could expand this by integrating multi-view stereo or Structure-from-Motion (SfM) techniques to generate more accurate and detailed 3D room layouts from minimal images
-\end{itemize}
+To explore all the new possibilities that the SKBD opens and to attempt to further improve its results, the following section details where it requires some future work.
+
+ First, exploring different descriptors, such as DALSM, presents an opportunity to refine how accurately the SKBD model measures image similarity and feature correlation. DALSM could potentially improve the benchmark results, providing a more efficient approach to detecting room boundaries by relying on robust image-pair descriptors. Implementing such descriptors may also help SKBD achieve higher performance and accuracy metrics in comparison to existing models.
+
+Another promising avenue for future work is incorporating multi-view information to improve the accuracy of 2D floor plan reconstructions. Although SKBD already benefits from combining multiple images from different angles, using techniques like multi-view stereo or Structure-from-Motion (SfM) could enable SKBD to enhance the precision of 2D layouts without creating a 3D model. By leveraging these methods, SKBD could generate more comprehensive and accurate 2D floor plans from minimal image input, particularly in complex or non-standard room geometries. This approach could further expand SKBD’s applications in scenarios requiring precise 2D spatial mapping without the need for 3D modeling.
+
+A final area for future research is refining SKBD’s robustness against varying image qualities and environmental conditions. Many real-world applications involve images with bad conditions in lighting, exposure, and occlusions, which can obscure key structural features. Developing preprocessing techniques, such as advanced filtering or adaptive contrast adjustments, could help SKBD maintain high accuracy across diverse datasets.
