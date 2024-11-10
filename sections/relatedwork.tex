@@ -19,14 +19,14 @@ belong to which surface. Under the Manhattan world assumption\cite{790349} only
 these five surfaces \{Left, Front, Right, Ceiling, Ground\} can be visible in an
 image at the same time. After extracting the depthmap and the normalmap with the
 method described above, they used these as additional channels alongside the RGB
-pixel values of the image as the input of their multi-channel FCN.
+pixel values of the image as the input of their multi-channel FCN. This solution aims to solve the problem of estimating a layout, however our goal of floor reconstruction was outside for the scope of this paper. We believe that our solution offers a more practical solution and a more readily useable output for other solutions to build from it.  
 
 \paragraph{Layout Estimation Using Undirected Graph}
 Undirected graph representing strategy for general room layout estimation\cite{YAO2023103963}
 paper details a process that focuses on the use of undirected graphs. It parameterizes the layout to a graph, where layout vertices are regarded as the graph's vertices. A neural network then processes this graph and gives the layout as the result. This layout consists of the detected vertices and therefore, the visible walls, the floor and ceiling are also detected. This article also builds on the Manhattan world assumption\cite{790349}, therefore the same rules apply here as well. Subsequently, both cuboid and some non-cuboid shaped rooms were succesfully processed, although only limited information was extracted. This is a relevant article since it aims to solve the same problem as our presented problem, although in a smaller scale. This paper only focuses on cuboid rooms and a single image, while our solution considers non-cuboid rooms as well and it does not exclude the use of multiple viewpoints. 
 
 \paragraph{Learning to Reconstruct 3D Non-Cuboid Room Layout from a Single RGB Image}
-Learning to Reconstruct 3D Non-Cuboid Room Layout from a Single RGB Image\cite{9707088} presents a novel approach to reconstructing the 3D layout of indoor scenes, including walls, ceiling, and floor, from a single RGB image, addressing limitations of previous cuboid-based methods that lack flexibility in real-world scenarios. By framing room layout estimation as a plane detection problem, the proposed framework integrates the geometric relationships between detected 3D planes and 2D vertical lines of adjacent walls. This allows the method to discern whether walls are physically connected or disconnected in 3D space, utilizing Convolutional Neural Networks (CNNs) to detect both planes and vertical lines while estimating the 3D parameters for each plane. The idea of plane detection was considered in our solution as well. We also detect planes although in a different manner, more with the usage of detected features on the images. 
+Learning to Reconstruct 3D Non-Cuboid Room Layout from a Single RGB Image\cite{9707088} presents a novel approach to reconstructing the 3D layout of indoor scenes, including walls, ceiling, and floor, from a single RGB image, addressing limitations of previous cuboid-based methods that lack flexibility in real-world scenarios. By framing room layout estimation as a plane detection problem, the proposed framework integrates the geometric relationships between detected 3D planes and 2D vertical lines of adjacent walls. This allows the method to discern whether walls are physically connected or disconnected in 3D space, utilizing Convolutional Neural Networks (CNNs) to detect both planes and vertical lines while estimating the 3D parameters for each plane. The idea of plane detection was considered in our solution as well. We also detect planes although in a different manner, more with the usage of detected features on the images. Also we used more than one picture in order to achieve a higher level of accuracy.
 
 \paragraph{Polygon Detection for Room Layout Estimation using Heterogeneous Graphs and Wireframes}
 This paper \cite{10350607} presents an advanced method for creating 2-dimensional room layouts from photos by leveraging cutting-edge neural network techniques and geometric reasoning. 
@@ -34,7 +34,7 @@ It introduces a Heterogeneous Graph Transformer (HGT) model that excels in detec
 By avoiding traditional constraints like cuboid room shapes, the method can handle more complex environments. 
 
 Additionally, the model directly estimates room layouts without the need for post-processing heuristics, achieving superior performance in key metrics compared to state-of-the-art methods. 
-Its ability to accurately project 3D planes into 2D, along with thorough evaluations using synthetic and real wireframe detections, makes this approach highly effective for producing detailed, accurate 2D floor maps from simple images.
+Its ability to accurately project 3D planes into 2D, along with thorough evaluations using synthetic and real wireframe detections, makes this approach highly effective for producing detailed, accurate 2D floor maps from simple images. This solution uses neural networks, which were outside the scope of our solution. We planned to not depend on a neural-network, since their highly specialized nature makes it unfit for a general case such as our goal.
 
 \paragraph{DALSM: A Direction-Aware Line Segment Matching Method}
 Line segment matching is essential in tasks like 3D reconstruction, image stitching. Traditional methods rely on feature point correspondences to estimate projective transformations between images. 
@@ -43,4 +43,29 @@ Descriptor-based methods, such as Line Band Descriptor (LBD), address this by an
 
 To improve accuracy, the proposed Direction-Aware Line Segment Matching (DALSM) method incorporates direction-aware attributes, such as intersection angles and gradient directions, along with feature point correspondences. 
 This approach enhances precision without increasing computational costs. 
-DALSM can be useful in generating floor plans from 1-2 images, as it reliably matches line segments representing walls and floors giving more precise layout estimations.
+DALSM can be useful in generating floor plans from 1-2 images, as it reliably matches line segments representing walls and floors giving more precise layout estimations. This solution does not provide enough information for our goal of room floorplan reconstruction. Therefore this solution was partially used. We adapted a heavier use of descriptors for our paper.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
