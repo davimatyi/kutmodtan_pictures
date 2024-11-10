@@ -33,10 +33,12 @@ For segment detection, we revisited local descriptors. Using these descriptors w
 
 Some regions will only be detected once by one specific descriptor. However since we use multiple type of descriptors, more than one descriptor can find the same segment. This would be a problem, however the algorithm uses this to its advantage. It uses the redundant information to determine the easily detectable segments. For the sake of simplicity, in this paper a descriptor detailing a segment is called a representation.
 
-After every possible detail is extracted from an image, we run these representations of segments through a filter that is able to separate the segments into a distinct set. An element of the set consists of a segment and its associated representations. The process of organizing the representations into this set happens by measuring the similarity of two representations against a threshold. If that threshold is reached, the similarity is deemed to be too great and therefore only one of the representation of the segment can remain as the main representation (it is proposed that a high chance of similarity means that the two representations detail the same segment). The unused segment representations are also saved in the set, but only one main representation can be the appointed segment of the set. The process of this filtering is detailed in Algorithm \ref{alg:distinct}, which gives a rough outline of the control and data flow of the algorithm.
+After every possible detail is extracted from an image, we run these representations of segments through a filter that is able to separate the segments into a distinct set. An element of the set consists of a segment and its associated representations. The process of organizing the representations into this set happens by measuring the similarity of two representations against a threshold. If that threshold is reached, the similarity is deemed to be too great and therefore only one of the representation of the segment can remain as the main representation (it is proposed that a high chance of similarity means that the two representations detail the same segment). The unused segment representations are also saved in the set, but only one main representation can be the appointed segment of the set.
+
+The process of this filtering is detailed in Algorithm \ref{alg:distinct}, which gives a rough outline of the control and data flow of the algorithm. The complexity of the algorithm is $O(n^2)$ where $n$ is the number of representations.
 %algorithm to detail this set creation
 \begin{algorithm}[H]
-\caption{Building of the Set}\label{alg:distinct}
+\caption{Building of the Segments Set}\label{alg:distinct}
 \begin{algorithmic}
     \State \texttt{Declare set S}
     \State \texttt{Given representations in R}
@@ -71,7 +73,7 @@ In the following step, each key point gathers the similar segments around themse
 
 These two steps are repreated iteratively. In the following iterations, the number of associations and their strength are also calculated into the interest score of the segments. This ensures that the different segments with different characterestics are selected in each iteration. The desired number of key points and the association threshold are both increased between iterations. While this approach ensures that more and smaller group of segments are gathered around the key points in each iteration, there is no direct hiearchy between them, since the new key points gather segments independently from their previous groups. The iteration of the association ends when a certain number of key points are selected.
 
-This algorithm is summarized in Algorithm~\ref{alg:assoc}.
+This algorithm is summarized in Algorithm~\ref{alg:assoc}. The complexity of the algorithm is $O(nk)$ where $n$ is the number of segments and $k$ is the desired number of knots.
 
 \begin{algorithm}[H]
 \caption{Building of the Knots}\label{alg:assoc}
@@ -109,7 +111,7 @@ The next important step is creating a common depiction for each knot. These depi
 
 Based on these statistics the connection strength score matrix, abbreviated to CSSM, is calculated. The matrix represents the connection strength of every super segment with every other super segment. To get the values for one of the super segments, first the difference between its statistics and every other super segment's is calulated, separately for each characteristic. The differences are ranked and based on the closest value each following one's score is increased. The strength scores are normalized, so for each the closest super segment's score will be one.
 
-A simplified version of the algorithm, without detailing the per characteristics calculations, is shown in Algorithm~\ref{alg:buildcssm}.
+A simplified version of the algorithm, without detailing the per characteristics calculations, is shown in Algorithm~\ref{alg:buildcssm}. The complexity of the algorithm is $O(n^2)$ where $n$ is the number of knots.
 
 \begin{algorithm}[H]
 \caption{Building of CSSM}\label{alg:buildcssm}
@@ -160,7 +162,7 @@ A possible CSSM for four knots is shown in \autoref{table:example_cssm}. In this
 
 Taking the aforementioned depictions in the CSSM we attempt to create multiple graph structures that are separate from each other. For a given graph we take the nodes as the depictions. The edges for a given graph differ from graph to graph. These edges are weighted and  determined by a proximity value. If two given depictions' strength scores (calculated by the CSSM) are above the proximity value, an edge is formed between the associated nodes. Different graphs work with different proximity values and the strength scores differ from as well. For each graph a proximity value is selected and strength scores are calculated from a CSSM detailed in \ref{subsec:assoc_segm}. This CSSM takes into account different characteristics for each graph. More concretely, every time a different subsection of characteristics are used to define a CSSM. 
 
-The proximity values are selected from a range. This range is defined by taking the CSSM strength scores and setting the range's limits to the first and third quartiles of the strength scores. Proximity values are then picked from this range to be used for the creation of different graphs. The process of defining graphs is detailed in Algorithm \ref{alg:graph}.
+The proximity values are selected from a range. This range is defined by taking the CSSM strength scores and setting the range's limits to the first and third quartiles of the strength scores. Proximity values are then picked from this range to be used for the creation of different graphs. The process of defining graphs is detailed in Algorithm \ref{alg:graph}. The complexity of the algorithm is $O(n^2)$ where $n$ is the number of depictions.
 
 \begin{algorithm}[H]
 \caption{Defining the graphs}\label{alg:graph}
