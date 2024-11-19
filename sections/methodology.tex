@@ -67,7 +67,7 @@ At the end of this process, we are left with a set of distinct segments, represe
 \subsection{Association of Segments} %Segment Association
 \label{subsec:assoc_segm}
 
-The first task in the association of segments is determining the interesting and important key points. During the detection phase, some information is already saved about the individual representations, which decriptor found it, how high its activation level was and additional information based on the type of descriptor. While merging them into segments, these characterestics are inherited. Segments also have their confidence score. Based on all these factors, an interest score is calculated for each segment. Then the most important segments will be selected as the first key points.
+The first task in the association of segments is determining the interesting and important key points. During the detection phase, some information is already saved about the individual representations, which descriptor found it, how high its activation level was and additional information based on the type of descriptor. While merging them into segments, these characterestics are inherited. Segments also have their confidence score. Based on all these factors, an interest score is calculated for each segment. Then the most important segments will be selected as the first key points.
 
 In the following step, each key point gathers the similar segments around themselves. These groups are also called knots in this paper. An association likeliness score is calculated between each key point and each segment. This includes the similarity of characterestics of the two segments and their disctance. The factors that contributed heavily to the interest score of the key points are weighted more heavily here. Every segment with an association score above a certain threshold is associated with the given key point, it is placed inside its knot. Each segment can be part of multiple knots independently and there is no upper bound for the possible number of association. Therefore, this part of the process can be heavily parallelized to improve the algorithms performance.
 
@@ -197,7 +197,7 @@ The proximity values are selected from a range. This range is defined by taking 
     \State \texttt{Define CSSM strength scores in matrix C}
     \For{\texttt{depiction d1 in D}}
         \For{\texttt{depiction d2 in D}}
-            \If{strength of d1 d2 > p}
+            \If{\texttt{strength of d1 d2 > p}}
                 \State \texttt{Create edge between d1 and d2}
             \EndIf
         \EndFor
