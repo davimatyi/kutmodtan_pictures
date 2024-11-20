@@ -2,11 +2,14 @@
 
 \usetheme{Madrid}
 \usepackage{graphicx}
+\usepackage[utf8]{inputenc}  
+\usepackage[T1]{fontenc}     
+\usepackage{textcomp}        
 
 \title[SKBD] {SKBD: Segment Knotting Boundary Detection For Room Layout Detection}
 
 \author[Pictures]
-{Barna Mikler \and Botond Geonczeol \and Dominik Li \and \\ Matyas David \and Balint Boros}
+{Barna Mikler \and Botond Geönczeöl \and Dominik Li \and \\ Mátyás Dávid \and Bálint Boros}
 
 \institute[ELTE]{Eötvös Loránd University \\ Faculty of Informatics}
 
@@ -199,12 +202,64 @@
 \end{figure}
 \end{frame}
 
-\section{Results on Structured3D and LSUN}
+\section{Results on Structured3D and LSUN datasets}
 \begin{frame}
-\frametitle{Results on Structured3D and LSUN}
+\frametitle{Results on Structured3D and LSUN datasets}
+\textbf{Standard metrics used for comparisons}
 \begin{itemize}
-    \item 
+    \item Corner Error (CE): Average euclidean distance between predicted and ground truth corner segments
+    \item Pixel Error (PE): A percentage of the total number of pixels where the calculated floor polygon and ground truth differ
 \end{itemize}
+\textbf{Benchmarked solutions}
+\begin{itemize}
+    \item Multi-Channel Fully Convolutional Network (MC-FCN)
+    \item Heterogenous Graph-based Classifier (HGC)
+\end{itemize}
+\textbf{Used datasets}
+\begin{itemize}
+    \item Large-scale Scene UNderstanding Challenge (LSUN): consists of 4000 training images, 394 validation images and 1000 testing images
+    \item Structured3D simulated dataset: consists of 3500 scenes, a total of 21835 rooms and 196515 images
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Results on LSUN dataset}
+\begin{table}[H]
+\centering
+\begin{tabular}{|c | c c |}
+    \hline
+    Type & $\epsilon[PE](\%)$ & $\epsilon[CE]$ \\ [0.5 ex]
+    \hline\hline
+    MC-FCN & 8.91 & 6.75 \\
+    HGC & 5.29 & 3.44 \\
+    SKBD (single viewpoint) & 3.17 & 2.41 \\
+    \hline
+    SKBD (multiple viewpoints) & \textbf{1.13} & \textbf{1.06} \\
+    \hline
+\end{tabular}
+\caption{Results on LSUN dataset}
+\label{table:lsunperf}
+\end{table}
+\end{frame}
+
+\begin{frame}
+\frametitle{Results on Structured3D dataset}
+\begin{table}[H]
+\centering
+\begin{tabular}{|c | c c |}
+    \hline
+    Type & $\epsilon[PE](\%)$ & $\epsilon[CE]$ \\ [0.5 ex]
+    \hline\hline
+    MC-FCN & 6.91 & 4.98 \\
+    HGC & 4.17 & 2.57 \\
+    SKBD (single viewpoint) & 1.89 & 1.34 \\
+    \hline
+    SKBD (multiple viewpoints) & \textbf{0.77} & \textbf{0.68} \\
+    \hline
+\end{tabular}
+\caption{Results on Structured3D dataset}
+\label{table:structured3dperf}
+\end{table}
 \end{frame}
 
 % Split or give more frames?
